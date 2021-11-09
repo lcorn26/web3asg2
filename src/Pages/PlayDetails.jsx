@@ -37,7 +37,7 @@ export const PlayDetails = () => {
     return (
         <div>
             <div>
-                <Modal
+            <Modal
                     show={show}
                     onHide={handleClose}
                     backdrop="static"
@@ -69,6 +69,27 @@ export const PlayDetails = () => {
                         </Menu.Item>
                     </Menu>
                 </Header>
+                <Modal
+                    show={show}
+                    onHide={handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modal title</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Github: https://github.com/lcorn26/web3_asg1.git
+                        Group Members: Liam Cormwall, Meet Suthar, Yuan zhou
+                        Technology used: React, NPM, Modals, css= @ant-design/icons
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary">Understood</Button>
+                    </Modal.Footer>
+                </Modal>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
                     {playDescrip.message ?
                         <Row>
