@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("stage.jpg");
+
+    width:100%;
+    height: 100%;
+
+}
+
+#mainHeader {
+color: white;
+
+}
+
+
+
