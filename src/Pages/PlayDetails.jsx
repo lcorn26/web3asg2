@@ -117,10 +117,10 @@ export const PlayDetails = () => {
                                             </TabPane>
                                             <TabPane tab="Characters" key="2">
                                                 <List dataSource={playDescrip.persona} renderItem={item => (
-                                                    <><List.Item extra={<p>{item.desc}</p>}>
+                                                    <List.Item extra={<p>{item.desc}</p>}>
                                                         {item.player}
                                                     </List.Item>
-                                                    </>
+                                                    
                                                 )}>
                                                 </List>
                                             </TabPane>
