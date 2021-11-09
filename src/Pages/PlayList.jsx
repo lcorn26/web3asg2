@@ -5,6 +5,7 @@ import {
     HeartTwoTone,
     DeleteTwoTone
 } from '@ant-design/icons';
+import Modal from 'react-modal';
 import { List } from 'rc-field-form';
 const { Header, Content } = Layout;
 const { Option } = Select;
