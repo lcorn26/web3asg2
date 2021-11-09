@@ -120,6 +120,7 @@ export const PlayDetails = () => {
                                                     <Option value="1"></Option>
                                                 </Select>
                                             </Form.Item>
+                                            <Form.Item><input type="text"></input></Form.Item>
                                         </Form>
                                     </Card>
                                 </div>
