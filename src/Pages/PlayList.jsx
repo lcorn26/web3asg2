@@ -18,7 +18,8 @@ export const PlaysList = () => {
     const [favouriteList, setFavouriteList] = useState([]);
     const [form] = Form.useForm();
     const [show, setShow] = useState(true);
-
+    const handleClose = () => { setShow(false); }
+    const handleShow = () => { setShow(true); }
 
     useEffect(() => {
         if (!playsList) {
@@ -130,7 +131,8 @@ export const PlaysList = () => {
             <Layout>
                 <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
                     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                        <Menu.Item key="1"><Link to="/">Logo</Link>
+                        <Menu.Item key="1"> <Link to="/"><img src="../logo192.png" alt="home" /></Link>
+
                         </Menu.Item>
                         <Menu.Item key="2">About</Menu.Item>
                     </Menu>
