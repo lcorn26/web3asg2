@@ -62,7 +62,7 @@ export const PlayDetails = () => {
                 <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
                     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
                         
-                        <Menu.Item key="1"> <Link to="/"><img src="../logo192.png" alt="home" /></Link>
+                        <Menu.Item key="1"> <Link to="/"><img src="../logo192.png" alt="home" width="30px" height="30px" /></Link>
                         </Menu.Item>
                         <Menu.Item key="2">
                             <Link to={handleShow}>About</Link>
