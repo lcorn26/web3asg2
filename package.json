@@ -1,6 +1,6 @@
 {
+  "homepage": "http://lcorn26.github.io/react-pages",
   "name": "react-pages",
-  "homepage": "https://lcorn26.github.io/react-pages",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
