@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Menu, Layout, Empty, Button, Row, Col, Form, List, Card, Select, Tabs } from 'antd';
 import Modal from 'react-modal';
+import About from './About.jsx';
 import {
     HeartTwoTone,
     DeleteTwoTone
@@ -37,7 +38,7 @@ export const PlayDetails = () => {
     return (
         <div>
             <div>
-            <Modal
+            {/* <Modal
                     show={show}
                     onHide={handleClose}
                     backdrop="static"
@@ -56,7 +57,8 @@ export const PlayDetails = () => {
                         </Button>
                         <Button variant="primary">Understood</Button>
                     </Modal.Footer>
-                </Modal>
+                </Modal> */}
+                <About/>
             </div>
             <Layout>
                 <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
@@ -65,7 +67,7 @@ export const PlayDetails = () => {
                         <Menu.Item key="1"> <Link to="/"><img src="../logo192.png" alt="home" width="30px" height="30px" /></Link>
                         </Menu.Item>
                         <Menu.Item key="2">
-                            <Link to={handleShow}>About</Link>
+                            <About/>
                         </Menu.Item>
                     </Menu>
                 </Header>
