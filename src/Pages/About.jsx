@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-// import './css/About.css'
 
 
 export default function About() {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     return (
         <div className="modal-window">
-            <button className="about-button" onClick={() => setModalIsOpen(true)}>About</button>
+            <div className="about-button" onClick={() => setModalIsOpen(true)}>About</div>
             <Modal isOpen = {modalIsOpen}
                 shouldCloseOnOverlayClick={false}
                 onRequestClose={() => setModalIsOpen(false)}>
@@ -15,14 +14,14 @@ export default function About() {
                 <h2>WEB 3 Assignment 2 by Andre Co Liam Cormwall, Meet Suthar</h2>
                 <p className="modal-content">
                     <ul> Group Members
-                        <li>Andre Co Liam Cormwall, Meet Suthar</li>
+                        <li>Andre Co Liam, Cormwall, Meet Suthar</li>
                     </ul>
                     <ul> 
-                        <li><a href="https://github.com/AndreCo17/WEB-3-Assignment-1">Github Link</a></li>
+                        <li><a href="https://github.com/lcorn26/web3asg2">Github Link</a></li>
                     </ul>
                     <ul> Technology Used
                         <li>REACT</li>
-                        <li>Google</li>
+                        <li>Ant Design Library</li>
                         <li>VS Code</li>
                         <li>JSX</li>
                         <li>CSS</li>
@@ -44,7 +43,6 @@ export default function About() {
                     <ul>
                         ----
                     </ul>
-                    <p>I really tried my best with the given time. I would appreciate some feedback on this assignment. Given that I was working alone, I struggled to finish everything in time. There are functions and lines of code in my project that I left so that you may able to take a look and possibly provide some feedback. Thanks Randy!</p>
                 </p>
                 <div>
                     <button className="close-about-button" onClick={() => setModalIsOpen(false)}>Close</button>
