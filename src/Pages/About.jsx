@@ -14,7 +14,7 @@ export default function About() {
                 <h2>WEB 3 Assignment 2 by Andre Co Liam Cormwall, Meet Suthar</h2>
                 <p className="modal-content">
                     <ul> Group Members
-                        <li>Andre Co Liam, Cormwall, Meet Suthar</li>
+                        <li>Andre Co, Liam Cormwall, Meet Suthar</li>
                     </ul>
                     <ul> 
                         <li><a href="https://github.com/lcorn26/web3asg2">Github Link</a></li>
