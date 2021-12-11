@@ -7,6 +7,8 @@ import {
 } from '@ant-design/icons';
 import Modal from 'react-modal';
 import About from './About.jsx';
+import AccInfo from './AccInfo.jsx';
+import Logout from './Logout.jsx';
 
 import { List } from 'rc-field-form';
 const { Header, Content } = Layout;
@@ -132,11 +134,11 @@ export const PlaysList = () => {
         <div>
             <Layout>
             <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-                    <Menu theme="dark" mode="horizontal" >
-                        <Menu.Item key="1"> <Link to="/"><img src="https://i.gifer.com/YIgY.gif" alt="home" width="30px" height="30px" /></Link>
-                        </Menu.Item>
+            <Menu theme="dark" mode="horizontal">
+                        <Menu.Item key="1"> <Link to="/"><img src="https://i.gifer.com/YIgY.gif" alt="home" width="30px" height="30px" /></Link></Menu.Item>
                         <Menu.Item key="2"><About/></Menu.Item>
-                        
+                        <Menu.Item key="3"><AccInfo/></Menu.Item>
+                        <Menu.Item key="4">Logout</Menu.Item>
                     </Menu>
                 </Header>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
