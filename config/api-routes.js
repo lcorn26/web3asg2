@@ -1,8 +1,10 @@
 // Filename: api-routes.js
 // Initialize express router
+//const helper = require('./helpers.js');
+
 let router = require('express').Router();
 // Set default API response
-router.get('/', function (req, res) {
+router.get('/',  helper.ensureAuthenticated, function (req, res) {
     res.json({
         status: 'API Its Working',
         message: 'Welcome to RESTHub crafted with love!'
@@ -12,7 +14,7 @@ router.get('/', function (req, res) {
 module.exports = router;
 
 const handlelist = (app, play) => {
-    app.route('/api/list')
+    app.route('/api/list', helper.ensureAuthenticated)
     .get( (req,resp) => {
     // use mongoose to retrieve all from Mongo
     play.find({}, (err, data) => {
@@ -53,18 +55,21 @@ const handlelist = (app, play) => {
  });
  };
 
-// const handleLogin = (app, ) => {
-//     app.route('/api/login')
-// .post( (req,resp) => {
-//     Image.find({}, (err, data) => {
-//     if (err) {
-//         resp.json({message: 'Unable to find'});
-//     } else {
-//         resp.json(data);
-//     }
-// });
-// });
-// };
+ app.get('/login', (req, res) => {
+    res.render('login.ejs', {message: req.flash('error')} );
+   });
+   app.post('/login', async (req, resp, next) => {
+    // use passport authentication to see if valid login
+    passport.authenticate('localLogin',
+    { successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true })(req, resp, next);
+   });
+   app.get('/logout', (req, resp) => {
+    req.logout();
+    req.flash('info', 'You were logged out');
+    resp.render('login', {message: req.flash('info')} );
+   }); 
 
  module.exports = {
     handlelist,handleplay,handleUser
