@@ -105,10 +105,4 @@ app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")
 });
 
-const port = process.env.port;
-app.listen(port, function () {
-    console.log("Server running at port= " + port);
-});
-
-
-
+app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
