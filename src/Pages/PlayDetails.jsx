@@ -15,13 +15,17 @@ export const PlayDetails = () => {
     const [playDescrip, setPlayDescrip] = useState(false);
     const playDetails = JSON.parse(localStorage.getItem("playDetails"));
     useEffect(() => {
-        fetch('https://randyconnolly.com/funwebdev/3rd/api/shakespeare/play.php?name=' + id)
-            .then(response => response.json())
+        getPlayDetails();
+    }, [id])
+
+    function getPlayDetails() {
+        axios.get("https://web3asg2.herokuapp.com/api/play/" + id ,  { crossdomain: true })
+        .then(response => response.json())
             .then(data => {
                 setPlayDescrip(data);
                 setIsloaded(true);
             })
-    }, [id])
+    }
 
     const [show, setShow] = useState(true);
 

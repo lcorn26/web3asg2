@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function Logout() {
     function handleLogout() {
-        axios.delete("http://localhost:8080/logout", 
+        axios.delete("https://web3asg2.herokuapp.com/logout", 
         { crossdomain: true }, 
         { withCredentials: true})
     }
