@@ -124,7 +124,6 @@ export const PlaysList = () => {
             console.log(genreData)
             FilteredData.push(...genreData);
         }
-        //names.filter(name => name.includes('J'))
         console.log(FilteredData)
         setPlaysList(FilteredData)
     }
@@ -143,12 +142,16 @@ export const PlaysList = () => {
                 </Header>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
                     <Row>
-                        <Col span={8}>
-                        <button class="btn-minimize" onClick={()=>setShow(!show)}></button>
+                        <Col span={1}>
+                        <p><button class="btn-minimize" onClick={()=>setShow(!show)}>◍</button></p>
+                        </Col>
+                        <Col span={7}>
                             {show?<div id="fav" className="site-layout-background" style={{ padding: 24, minHeight: 380 }} >
-                                <h1>Favourites</h1>
+                            <h1>Favourites</h1>
                                 {isLoaded ? <Table pagination={false} dataSource={favouriteList} columns={favouritesColumns} /> : null}
+                                
                             </div>:null}
+                            
                         </Col>
                         <Col span={8}>
                             <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
