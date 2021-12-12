@@ -9,15 +9,23 @@ const flash = require('express-flash');
 const passport = require('passport');
 const helper = require('./scripts/helpers.js');
 const controller = require('./scripts/dataController.js');
+const cors = require("cors");
 
 require('./scripts/dataConnector.js').connect();
 // create express app
 const app = express();
 
+app.use(express.static(path.join(__dirname, './build')));
+
+// tell node to use json and HTTP header features
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static('dist'));
 
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://web3asg2-334906.uw.r.appspot.com/");
+    res.header("Access-Control-Allow-Origin", "https://web3asg2-334911.uc.r.appspot.com/");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
@@ -27,13 +35,6 @@ app.use(function (req, res, next) {
 // view engine setup
 app.set('views', './views');
 app.set('view engine', 'ejs');
-
-// serves up static files from the public folder. 
-app.use(express.static(path.join(__dirname, './build')));
-
-// tell node to use json and HTTP header features
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use(
     session({
@@ -79,6 +80,7 @@ app.get('/api/list', helper.ensureAuthenticated, (req, res) => {
 // login and logout handlers
 app.get('/login', (req, res) => {
     res.render('login.ejs', { message: req.flash('error') });
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.post('/login', async (req, resp, next) => {
     // use passport authentication to see if valid login

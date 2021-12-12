@@ -1,36 +1,35 @@
 import './App.css';
-import React, { useEffect, useState, useReducer} from 'react'
 import { Routings } from './Routes/Routes';
-import axios from 'axios'
+import React, { Component } from "react";
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {apiResponse: "" }
+  }
+  callAPI() {
+      fetch("https://web3asg2-334911.uc.r.appspot.com/api/list")
+      .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res}))
+      .catch(err => err);
+
+  }
 
 
-function App() {
-  
-    useEffect(() => {
-        const call = async () => {
-            try {
-                const url = "https://web3asg2-334906.uw.r.appspot.com/api/list"
-                const res = await axios(url)
-                console.log(res.data)
-              
-            }
-            catch (err) {
-                
-            }
+  componentDidMount() {
+    this.callAPI();
+  }
 
-        }
-        
-
-    }, [checkHealth])
-
-
+  render() {
   return (
     <div className="App">
-      { App() }
      <Routings/>
+     <p>{this.state.apiResponse}</p>
     </div>
   );
+  }
 }
-
+  
 export default App;
 

@@ -15,7 +15,7 @@ export const PlayDetails = () => {
     const [playDescrip, setPlayDescrip] = useState(false);
     const playDetails = JSON.parse(localStorage.getItem("playDetails"));
     useEffect(() => {
-        fetch('https://web3asg2-334906.uw.r.appspot.com/api/play/' + id)
+        fetch('https://web3asg2-334911.uc.r.appspot.com/api/play/' + id)
             .then(response => response.json())
             .then(data => {
                 setPlayDescrip(data);
