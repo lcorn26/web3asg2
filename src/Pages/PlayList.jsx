@@ -6,6 +6,10 @@ import {
     DeleteTwoTone
 } from '@ant-design/icons';
 import Modal from 'react-modal';
+import About from './About.jsx';
+import AccInfo from './AccInfo.jsx';
+import Logout from './Logout.jsx';
+
 import { List } from 'rc-field-form';
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -129,35 +133,14 @@ export const PlaysList = () => {
     return (
         <div>
             <Layout>
-                <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                        <Menu.Item key="1"> <Link to="/"><img src="../logo192.png" alt="home" width="30px" height="30px"/></Link>
-
-                        </Menu.Item>
-                        <Menu.Item key="2">About</Menu.Item>
+            <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+            <Menu theme="dark" mode="horizontal">
+                        <Menu.Item key="1"> <Link to="/"><img src="https://i.gifer.com/YIgY.gif" alt="home" width="30px" height="30px" /></Link></Menu.Item>
+                        <Menu.Item key="2"><About/></Menu.Item>
+                        <Menu.Item key="3"><AccInfo/></Menu.Item>
+                        <Menu.Item key="4">Logout</Menu.Item>
                     </Menu>
                 </Header>
-                <Modal
-                    show={show}
-                    onHide={handleClose}
-                    backdrop="static"
-                    keyboard={false}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal title</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        Github: https://github.com/lcorn26/web3_asg1.git
-                        Group Members: Liam Cormwall, Meet Suthar, Yuan zhou
-                        Technology used: React, NPM, Modals, css= @ant-design/icons
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary">Understood</Button>
-                    </Modal.Footer>
-                </Modal>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
                     <Row>
                         <Col span={8}>
@@ -225,7 +208,7 @@ export const PlaysList = () => {
                         </Col>
                         <Col span={8}> <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
                             <h1>List / Matches</h1>
-                            {isLoaded ? <Table pagination={false} dataSource={playsList} columns={columns} /> : null}
+                            {isLoaded ? <Table pagination={false} dataSource={playsList} columns={columns} scroll={{ y: 767 }} /> : null}
                         </div></Col>
                     </Row>
                 </Content>
