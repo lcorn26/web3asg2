@@ -32,7 +32,7 @@ export const PlaysList = () => {
     }, [playsList])
 
     function getPlaysList() {
-        axios.get("https://web3asg2.herokuapp.com/api/list",  { crossdomain: true })
+        axios.get("http://web3asg2.herokuapp.com/api/list",  { crossdomain: true })
         .then(response => response.json())
             .then(data => {
                 localStorage.setItem('playsList', JSON.stringify(data))
