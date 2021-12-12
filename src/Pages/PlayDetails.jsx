@@ -19,7 +19,7 @@ export const PlayDetails = () => {
     }, [id])
 
     function getPlayDetails() {
-        axios.get("https://web3asg2.herokuapp.com/api/play/" + id ,  { crossdomain: true })
+        axios.get("http://web3asg2.herokuapp.com/api/play/" + id ,  { crossdomain: true })
         .then(response => response.json())
             .then(data => {
                 setPlayDescrip(data);
