@@ -8,7 +8,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
 const helper = require('../scripts/helpers.js');
-const controller = require('../config/api-routes.js');
+const controller = require('../config/dataController.js');
 
 require('../config/dataConnector.js').connect();
 // create express app
@@ -21,7 +21,7 @@ app.set('views', '../views');
 app.set('view engine', 'ejs');
 
 // serves up static files from the public folder. 
-app.use('/static', express.static(path.join(__dirname, '../public')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // tell node to use json and HTTP header features
 app.use(express.json());
@@ -44,6 +44,12 @@ app.use(
    // set up the passport authentication
    require('../scripts/Auth.js');
 
+   const play = require('../models/play');
+   const user = require('../models/user');
+
+   const Router = require('../config/api-routes.js');
+   Router.handleAll(app, controller);
+   // create connection to database
 
 
 /*--- add in site page requests ----*/
@@ -52,15 +58,15 @@ app.get('/', helper.ensureAuthenticated, (req, res) => {
 });
 
 app.get('/api/list', helper.ensureAuthenticated, (req, res) => {
-    res.render('list.ejs', { play: controller.handlelist() });
+    res.render('list.ejs', { plays: controller.getAll() });
 });
 
-app.get('/api/play/:id', helper.ensureAuthenticated, (req, res) => {
-    res.render('play.ejs', {
-        play:
-            controller.findPlay(req.params.id)
-    });
-});
+// app.get('/api/play/:id', helper.ensureAuthenticated, (req, res) => {
+//     res.render('play.ejs', {
+//         play:
+//             controller.findPlay(req.params.id)
+//     });
+// });
 
 // login and logout handlers
 app.get('/login', (req, res) => {
@@ -85,15 +91,6 @@ app.get('/logout', (req, resp) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-const play = require('../models/play');
-const user = require('../models/user');
-
-const Router = require('../config/api-routes.js');
-Router.handlelist(app, play);
-Router.handleplay(app, play);
-Router.handleUser(app, user);
-// create connection to database
 
 // customize the 404 error with our own middleware function
 app.use(function (req, res, next) {

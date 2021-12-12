@@ -2,59 +2,50 @@
 // Initialize express router
 const helper = require('../scripts/helpers.js');
 
-let router = require('express').Router();
-// Set default API response
-router.get('/',  helper.ensureAuthenticated, function (req, res) {
-    res.json({
-        status: 'API Its Working',
-        message: 'Welcome to RESTHub crafted with love!'
-    });
-});
-// Export API routes
-module.exports = router;
-
-const handlelist = (app, play) => {
-    app.route('/api/list', helper.ensureAuthenticated)
-    .get( (req,resp) => {
-    // use mongoose to retrieve all from Mongo
-    play.find({}, (err, data) => {
-    if (err) {
-    resp.json({ message: 'Unable to connect to list' });
-    } else {
-    // return JSON retrieved by Mongo as response
-    resp.json(data);
-    }
-    });
-    });
-   }; 
+const handleAll = (app, controller) => {
+    app.get('/api/list', helper.ensureAuthenticated, (req,resp) => {         
+      const data = controller.getAll();
+      data.find({}, (err, data) => {
+        if (err) {
+        resp.json({ message: 'Unable to connect to images' });
+        } else {
+        // return JSON retrieved by Mongo as response
+        resp.json(data);
+        }
+        });
+   } );
+};
 
 
-  const handleplay = (app, play) => {
-      app.route('/api/play/:id')
-  .get( (req,resp) => {
-      play.find({id: req.params.id}, (err, data) => {
-      if (err) {
-          resp.json({message: 'Unable to find ID'});
-      } else {
-          resp.json(data);
-      }
-  });
-  });
-  };
+// // return just the requested book
+// const handleISBN10 = (app, controller) => {
+//    app.get('/api/isbn10/:isbn10', helper.ensureAuthenticated, (req,resp) => {
+//       const data = controller.findByISBN10(req.params.isbn10);
+//       if (data) {
+//          resp.json(data);
+//       } else {
+//          resp.json(jsonMessage(`ISBN ${req.params.isbn10} not found`));
+//       }  
+//    });
+// };
 
-  const handleUser = (app, user) => {
-     app.route('/api/user/:id')
-.get( (req,resp) => {
-    user.find({id: req.params.id}, (err, data) => {
-    if (err) {
-         resp.json({message: 'Unable to find User'});
-    } else {
-         resp.json(data);
-     }
- });
- });
- };
+// const handleTitle = (app, controller) => {
+//    app.get('/api/title/:substring', helper.ensureAuthenticated, (req,resp) => {
+//       const data = controller.findByTitle(req.params.substring);
+//       if (data) {
+//          resp.json(data);
+//       } else {
+//          resp.json(jsonMessage(`No title matches found for ${substring}`));
+//       }          
+//    });
+// };
 
- module.exports = {
-    handlelist,handleplay,handleUser
-   };
+// error messages need to be returned in JSON format
+const jsonMessage = (msg) => {
+   return { message : msg };
+};
+
+
+module.exports = {
+   handleAll
+};
