@@ -7,7 +7,6 @@ import {
 } from '@ant-design/icons';
 import About from './About.jsx';
 import AccInfo from './AccInfo.jsx';
-import Logout from './Logout.jsx';
 import axios from 'axios';
 
 const { Header, Content } = Layout;
@@ -32,7 +31,7 @@ export const PlaysList = () => {
     }, [playsList])
 
     function getPlaysList() {
-        axios.get("http://web3asg2.herokuapp.com/api/list",  { crossdomain: true })
+        axios.get("https://web3asg2-334906.uw.r.appspot.com/api/list",  { crossdomain: true })
         .then(response => response.json())
             .then(data => {
                 localStorage.setItem('playsList', JSON.stringify(data))
@@ -139,7 +138,6 @@ export const PlaysList = () => {
                         <Menu.Item key="1"> <Link to="/"><img src="https://i.gifer.com/YIgY.gif" alt="home" width="30px" height="30px" /></Link></Menu.Item>
                         <Menu.Item key="2"><About/></Menu.Item>
                         <Menu.Item key="3"><AccInfo/></Menu.Item>
-                        <Menu.Item key="4"><Logout/></Menu.Item>
                     </Menu>
                 </Header>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>

@@ -10,7 +10,7 @@ export const Home = () => {
     const [playsList, setPlaysList] = useState([]);
 
    useEffect(() => {
-        fetch('https://www.randyconnolly.com//funwebdev/3rd/api/shakespeare/list.php')
+        fetch('https://web3asg2-334906.uw.r.appspot.com/api/list')
         .then(response => response.json())
             .then(data => { localStorage.setItem('playsList', JSON.stringify(data))
             setPlaysList(data)

@@ -8,7 +8,6 @@ import { Empty } from 'antd';
 import { PlaysList } from "../Pages/PlayList";
 import { Favourites } from "../Pages/Favourites";
 import { PlayDetails } from "../Pages/PlayDetails";
-import { Logout } from "../Pages/Logout";
 
 
 
@@ -23,7 +22,6 @@ export function Routings() {
                     <Route exact path='/play-details/:id' component={PlayDetails} element={<PlayDetails/>}></Route>
                     <Route exact path='/favourites' component={Favourites} element={<Favourites/>}></Route>
                     <Route exact path="*" component={Empty} element={<Empty/>}/>
-                    
                 </Routes>
             </Router>
         </div>

@@ -7,21 +7,29 @@ const bodyParser = require("body-parser");
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
-const helper = require('../scripts/helpers.js');
-const controller = require('../config/dataController.js');
+const helper = require('./scripts/helpers.js');
+const controller = require('./scripts/dataController.js');
 
-require('../config/dataConnector.js').connect();
+require('./scripts/dataConnector.js').connect();
 // create express app
 const app = express();
+
+app.use(express.static('dist'));
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://web3asg2-334906.uw.r.appspot.com/");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 
 /* --- middle ware section --- */
 // view engine setup
-app.set('views', '../views');
+app.set('views', './views');
 app.set('view engine', 'ejs');
 
 // serves up static files from the public folder. 
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './build')));
 
 // tell node to use json and HTTP header features
 app.use(express.json());
@@ -42,12 +50,12 @@ app.use(
    app.use(flash())
    
    // set up the passport authentication
-   require('../scripts/Auth.js');
+   require('./scripts/Auth.js');
 
-   const play = require('../models/play');
-   const user = require('../models/user');
+   const play = require('./models/play');
+   const user = require('./models/user');
 
-   const Router = require('../config/api-routes.js');
+   const Router = require('./scripts/api-routes.js');
    Router.handleAll(app, controller);
    // create connection to database
 
