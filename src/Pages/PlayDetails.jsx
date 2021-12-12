@@ -18,14 +18,24 @@ export const PlayDetails = () => {
         getPlayDetails();
     }, [id])
 
-    function getPlayDetails() {
-        axios.get("https://web3asg2-334906.uw.r.appspot.com/api/play/" + id ,  { crossdomain: true })
-        .then(response => response.json())
+    // function getPlayDetails() {
+    //     axios.get("https://web3asg2-334906.uw.r.appspot.com/api/play/" + id ,  { crossdomain: true })
+    //     .then(response => response.json())
+    //         .then(data => {
+    //             setPlayDescrip(data);
+    //             setIsloaded(true);
+    //         })
+    // }
+
+    useEffect(() => {
+        fetch('https://web3asg2-334906.uw.r.appspot.com/api/play/' + id)
+            .then(response => response.json())
             .then(data => {
                 setPlayDescrip(data);
                 setIsloaded(true);
             })
-    }
+    }, [id])
+
 
     const [show, setShow] = useState(true);
 

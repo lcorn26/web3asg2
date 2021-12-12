@@ -23,22 +23,29 @@ export const PlaysList = () => {
     const handleClose = () => { setShow(false); }
     const handleShow = () => { setShow(true); }
 
+    // function getPlaysList() {
+    //     axios.get("https://web3asg2-334906.uw.r.appspot.com/api/list",  { crossdomain: true })
+    //     .then(response => response.json())
+    //         .then(data => {
+    //             localStorage.setItem('playsList', JSON.stringify(data))
+    //             setPlaysList(data)
+    //             setAllplaysList(data)
+    // });
+    // }
+
     useEffect(() => {
         if (!playsList) {
-            getPlaysList()
+            fetch('https://web3asg2-334906.uw.r.appspot.com/api/list')
+                .then(response => response.json())
+                .then(data => {
+                    localStorage.setItem('playsList', JSON.stringify(data))
+                    setPlaysList(data)
+                    setAllplaysList(data)
+                })
         }
         setIsloaded(true);
     }, [playsList])
 
-    function getPlaysList() {
-        axios.get("https://web3asg2-334906.uw.r.appspot.com/api/list",  { crossdomain: true })
-        .then(response => response.json())
-            .then(data => {
-                localStorage.setItem('playsList', JSON.stringify(data))
-                setPlaysList(data)
-                setAllplaysList(data)
-    });
-    }
 
     const markToFavourite = (row) => {
         setFavouriteList(prevArray => [...prevArray, row]);
