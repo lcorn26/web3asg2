@@ -1,6 +1,6 @@
 // Filename: api-routes.js
 // Initialize express router
-//const helper = require('./helpers.js');
+const helper = require('../scripts/helpers.js');
 
 let router = require('express').Router();
 // Set default API response
@@ -54,22 +54,6 @@ const handlelist = (app, play) => {
  });
  });
  };
-
- app.get('/login', (req, res) => {
-    res.render('login.ejs', {message: req.flash('error')} );
-   });
-   app.post('/login', async (req, resp, next) => {
-    // use passport authentication to see if valid login
-    passport.authenticate('localLogin',
-    { successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true })(req, resp, next);
-   });
-   app.get('/logout', (req, resp) => {
-    req.logout();
-    req.flash('info', 'You were logged out');
-    resp.render('login', {message: req.flash('info')} );
-   }); 
 
  module.exports = {
     handlelist,handleplay,handleUser
