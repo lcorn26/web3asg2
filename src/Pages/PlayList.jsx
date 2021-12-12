@@ -5,12 +5,11 @@ import {
     HeartTwoTone,
     DeleteTwoTone
 } from '@ant-design/icons';
-import Modal from 'react-modal';
 import About from './About.jsx';
 import AccInfo from './AccInfo.jsx';
 import Logout from './Logout.jsx';
+import axios from 'axios';
 
-import { List } from 'rc-field-form';
 const { Header, Content } = Layout;
 const { Option } = Select;
 <link rel="stylesheet" href="index.css"></link>
@@ -27,17 +26,20 @@ export const PlaysList = () => {
 
     useEffect(() => {
         if (!playsList) {
-            fetch('https://randyconnolly.com/funwebdev/3rd/api/shakespeare/list.php')
-                .then(response => response.json())
-                .then(data => {
-                    localStorage.setItem('playsList', JSON.stringify(data))
-                    setPlaysList(data)
-                    setAllplaysList(data)
-                })
+            getPlaysList()
         }
         setIsloaded(true);
     }, [playsList])
 
+    function getPlaysList() {
+        axios.get("http://localhost:8080/api/list",  { crossdomain: true })
+        .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('playsList', JSON.stringify(data))
+                setPlaysList(data)
+                setAllplaysList(data)
+    });
+    }
 
     const markToFavourite = (row) => {
         setFavouriteList(prevArray => [...prevArray, row]);
@@ -137,7 +139,7 @@ export const PlaysList = () => {
                         <Menu.Item key="1"> <Link to="/"><img src="https://i.gifer.com/YIgY.gif" alt="home" width="30px" height="30px" /></Link></Menu.Item>
                         <Menu.Item key="2"><About/></Menu.Item>
                         <Menu.Item key="3"><AccInfo/></Menu.Item>
-                        <Menu.Item key="4">Logout</Menu.Item>
+                        <Menu.Item key="4"><Logout/></Menu.Item>
                     </Menu>
                 </Header>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>

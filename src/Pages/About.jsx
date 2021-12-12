@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 
 
+
 export default function About() {
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const domainNameAndPort =  window.location.hostname + ":" + window.location.port;
+    const domain =  "localhost:8080";
+    const domainPlays =  "/api/play/1";
+    const domainUsers =  "/api/user/1";
+    const domainLogin =  "/login";
     return (
         <div className="modal-window">
             <div className="about-button" onClick={() => setModalIsOpen(true)}>About</div>
@@ -26,7 +32,8 @@ export default function About() {
                 <hr></hr>
                 <p align="center">
                     <h2>API Links</h2>
-                    <li>link 1</li>
+                    <li><a href={domain + domainPlays}>hi</a></li>
+                    <li></li>
                     </p>
                     <hr></hr>
                 <div align="center">
