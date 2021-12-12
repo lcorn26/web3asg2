@@ -15,19 +15,6 @@ export const PlayDetails = () => {
     const [playDescrip, setPlayDescrip] = useState(false);
     const playDetails = JSON.parse(localStorage.getItem("playDetails"));
     useEffect(() => {
-        getPlayDetails();
-    }, [id])
-
-    // function getPlayDetails() {
-    //     axios.get("https://web3asg2-334906.uw.r.appspot.com/api/play/" + id ,  { crossdomain: true })
-    //     .then(response => response.json())
-    //         .then(data => {
-    //             setPlayDescrip(data);
-    //             setIsloaded(true);
-    //         })
-    // }
-
-    useEffect(() => {
         fetch('https://web3asg2-334906.uw.r.appspot.com/api/play/' + id)
             .then(response => response.json())
             .then(data => {
@@ -35,6 +22,17 @@ export const PlayDetails = () => {
                 setIsloaded(true);
             })
     }, [id])
+
+        
+    //     axios.get("https://web3asg2-334906.uw.r.appspot.com/api/play/" + id ,  { crossdomain: true })
+    //     .then(response => response.json())
+    //         .then(data => {
+    //             setPlayDescrip(data);
+    //             setIsloaded(true);
+    //         })
+     
+
+    
 
 
     const [show, setShow] = useState(true);

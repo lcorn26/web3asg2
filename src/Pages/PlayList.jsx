@@ -23,7 +23,19 @@ export const PlaysList = () => {
     const handleClose = () => { setShow(false); }
     const handleShow = () => { setShow(true); }
 
-    // function getPlaysList() {
+
+        useEffect(() => {
+            if (!playsList) {
+                fetch('https://web3asg2-334906.uw.r.appspot.com/api/list')
+                    .then(response => response.json())
+                    .then(data => {
+                        localStorage.setItem('playsList', JSON.stringify(data))
+                        setPlaysList(data)
+                        setAllplaysList(data)
+                    })
+            }
+            setIsloaded(true);
+        }, [playsList])
     //     axios.get("https://web3asg2-334906.uw.r.appspot.com/api/list",  { crossdomain: true })
     //     .then(response => response.json())
     //         .then(data => {
@@ -31,20 +43,7 @@ export const PlaysList = () => {
     //             setPlaysList(data)
     //             setAllplaysList(data)
     // });
-    // }
 
-    useEffect(() => {
-        if (!playsList) {
-            fetch('https://web3asg2-334906.uw.r.appspot.com/api/list')
-                .then(response => response.json())
-                .then(data => {
-                    localStorage.setItem('playsList', JSON.stringify(data))
-                    setPlaysList(data)
-                    setAllplaysList(data)
-                })
-        }
-        setIsloaded(true);
-    }, [playsList])
 
 
     const markToFavourite = (row) => {
