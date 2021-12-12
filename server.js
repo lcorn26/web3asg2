@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('dist'));
 
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://web3asg2-334911.uc.r.appspot.com/");
+    res.header("Access-Control-Allow-Origin", "https://web3asg2-334906.uc.r.appspot.com");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });

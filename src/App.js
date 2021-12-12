@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {apiResponse: "" }
   }
   callAPI() {
-      fetch("https://web3asg2-334911.uc.r.appspot.com/api/list")
+      fetch("https://web3asg2-334906.uc.r.appspot.com/api/list")
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res}))
       .catch(err => err);
