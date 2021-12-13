@@ -9,16 +9,12 @@ const flash = require('express-flash');
 const passport = require('passport');
 const helper = require('./scripts/helpers.js');
 const controller = require('./scripts/dataController.js');
-const cors = require("cors");
 
 require('./scripts/dataConnector.js').connect();
 // create express app
 const app = express();
 
-app.use(express.static(path.join(__dirname, './build')));
-
 // tell node to use json and HTTP header features
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -63,7 +59,8 @@ app.use(
 
 /*--- add in site page requests ----*/
 app.get('/', helper.ensureAuthenticated, (req, res) => {
-    res.render('home.ejs', { user: req.user });
+    res.sendFile(path.join(__dirname, "./build/index.html"));
+    app.use(express.static(path.join(__dirname, './build')));
 });
 
 app.get('/api/list', helper.ensureAuthenticated, (req, res) => {
@@ -80,7 +77,6 @@ app.get('/api/list', helper.ensureAuthenticated, (req, res) => {
 // login and logout handlers
 app.get('/login', (req, res) => {
     res.render('login.ejs', { message: req.flash('error') });
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.post('/login', async (req, resp, next) => {
     // use passport authentication to see if valid login
