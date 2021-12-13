@@ -10,7 +10,7 @@ export const Home = () => {
     const [playsList, setPlaysList] = useState([]);
 
    useEffect(() => {
-        fetch('https://web3asg2-334906.uc.r.appspot.com/api/list')
+        fetch('/api/list')
         .then(response => response.json())
             .then(data => { localStorage.setItem('playsList', JSON.stringify(data))
             setPlaysList(data)

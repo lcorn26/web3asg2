@@ -4,7 +4,6 @@ import { Menu, Layout, Empty, Button, Row, Col, Form, List, Card, Select, Tabs }
 
 import About from './About.jsx';
 import AccInfo from './AccInfo.jsx';
-import axios from 'axios';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -15,23 +14,13 @@ export const PlayDetails = () => {
     const [playDescrip, setPlayDescrip] = useState(false);
     const playDetails = JSON.parse(localStorage.getItem("playDetails"));
     useEffect(() => {
-        fetch('https://web3asg2-334906.uc.r.appspot.com/api/play/' + id)
+        fetch('/api/play/' + id)
             .then(response => response.json())
             .then(data => {
                 setPlayDescrip(data);
                 setIsloaded(true);
             })
     }, [id])
-
-        
-    //     axios.get("https://web3asg2-334906.uw.r.appspot.com/api/play/" + id ,  { crossdomain: true })
-    //     .then(response => response.json())
-    //         .then(data => {
-    //             setPlayDescrip(data);
-    //             setIsloaded(true);
-    //         })
-     
-
     
 
 

@@ -7,7 +7,6 @@ import {
 } from '@ant-design/icons';
 import About from './About.jsx';
 import AccInfo from './AccInfo.jsx';
-import axios from 'axios';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -26,7 +25,7 @@ export const PlaysList = () => {
 
         useEffect(() => {
             if (!playsList) {
-                fetch('https://web3asg2-334906.uc.r.appspot.com/api/list')
+                fetch('/api/list')
                     .then(response => response.json())
                     .then(data => {
                         localStorage.setItem('playsList', JSON.stringify(data))
@@ -36,13 +35,6 @@ export const PlaysList = () => {
             }
             setIsloaded(true);
         }, [playsList])
-    //     axios.get("https://web3asg2-334906.uw.r.appspot.com/api/list",  { crossdomain: true })
-    //     .then(response => response.json())
-    //         .then(data => {
-    //             localStorage.setItem('playsList', JSON.stringify(data))
-    //             setPlaysList(data)
-    //             setAllplaysList(data)
-    // });
 
 
 
