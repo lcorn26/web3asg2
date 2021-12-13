@@ -1,14 +1,2 @@
 runtime: nodejs16
 env: standard
-handlers:
-  - url: /
-    static_files: build/index.html
-    upload: build/index.html
-
-  - url: /
-    static_dir: build
-
-env_variables:
-MONGO_URL: mongodb+srv://atlasAdmin:Password123@cluster0.7ompl.mongodb.net/list?retryWrites=true&w=majority
-PORT: 8080
-SECRET: lol
