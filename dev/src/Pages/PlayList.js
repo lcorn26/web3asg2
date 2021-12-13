@@ -141,7 +141,7 @@ export const PlaysList = () => {
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
                     <Row>
                         <Col span={1}>
-                        <p><button class="btn-minimize" onClick={()=>setShow(!show)}>◍</button></p>
+                        <p><button style={{ margin: 5}} class="btn-minimize" onClick={()=>setShow(!show)}>◍</button></p>
                         </Col>
                         <Col span={7}>
                             {show?<div id="fav" className="site-layout-background" style={{ padding: 24, minHeight: 380 }} >

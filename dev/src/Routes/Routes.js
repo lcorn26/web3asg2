@@ -3,14 +3,10 @@ import {
     BrowserRouter as Router,
     Routes, Route
 } from "react-router-dom";
-import { Home } from "../Pages/Home";
-import { Empty } from 'antd';
-import { PlaysList } from "../Pages/PlayList";
-import { Favourites } from "../Pages/Favourites";
-import { PlayDetails } from "../Pages/PlayDetails";
-
-
-
+import { Home } from "../Pages/Home.js";
+import { PlaysList } from "../Pages/PlayList.js";
+import { Favourites } from "../Pages/Favourites.js";
+import { PlayDetails } from "../Pages/PlayDetails.js";
 
 export function Routings() {
     return (

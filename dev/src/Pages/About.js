@@ -20,14 +20,21 @@ export default function About() {
                 </h2>
                 <hr></hr>
                 <p align="center" > 
-                    <h3>Resources Used: </h3>
+                <h3>Resources Used: </h3>
                     <li>React Library</li>
                     <li></li>
+                    <li>React (modal, router, useEffect, useState) </li>
+                    <li>JavaScript</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Hosting Service (Google App Engine)</li>
+                    <li>Ant Design</li>
                 </p>
                 <hr></hr>
                 <p align="center">
                     <h2>API Links</h2>
                     <li>hi</li>
+                    <li><a href="/api/play">/api/play</a></li>
                     <li></li>
                     </p>
                     <hr></hr>

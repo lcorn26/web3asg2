@@ -1,30 +1,39 @@
 'use strict'
 require('dotenv').config();
-// require express and bodyParser
-const path = require('path');
+// create express app
+
+
+// require express
 const express = require("express");
-const bodyParser = require("body-parser");
-const session = require('express-session');
-const flash = require('express-flash');
-const passport = require('passport');
+const app = express();
+const cookieParser = require("cookie-parser");
+const path = require("path");
+const session = require("express-session");
+const flash = require("express-flash");
+const passport = require("passport");
 const helper = require('./scripts/helpers.js');
-const controller = require('./scripts/dataController.js');
-const auth = require('./scripts/Auth.js');
-   const play = require('./models/Play');
-   const user = require('./models/User');
-   const Router = require('./scripts/api-routes.js');
-   const cookieParser = require('cookie-parser');
 
 require('./scripts/dataConnector.js').connect();
-// create express app
-const app = express();
+require("./scripts/Auth.js");
+
+//get our data model
+const play = require('./models/Play.js');
+const user = require('./models/User.js');
 
 // tell node to use json and HTTP header features
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/static", express.static('./static/'));
 
-/* --- middle ware section --- */
-// view engine setup
+//use bodyParser middleware on express app
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+
+//use route handlers
+const Router = require('./scripts/routes.js');
+Router.handleAllPlays(app, play);
+Router.handlePlayByID(app, play);
+Router.handleUserByID(app, user);
+
 //view engine setup
 app.set("views", "./views");
 app.set("view engine", "ejs");
@@ -39,16 +48,17 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-   
-   Router.handleAll(app, play);
-   // create connection to database
-
 
 /*--- add in site page requests ----*/
-app.get('/', helper.ensureAuthenticated, (req, res) => {
+app.get("/", helper.ensureAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "./build/index.html"));
-    app.use('/', express.static(path.join(__dirname, './build')));
-});
+    app.use("/", express.static(path.join(__dirname, "./build")));
+  });
+
+app.get("/play-list", helper.ensureAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname, "./build/index.html"));
+    app.use("/", express.static(path.join(__dirname, "./build")));
+  });
 
 
 // app.get('/api/play/:id', helper.ensureAuthenticated, (req, res) => {
@@ -59,32 +69,30 @@ app.get('/', helper.ensureAuthenticated, (req, res) => {
 // });
 
 // login and logout handlers
-app.get('/login', (req, res) => {
-    res.render('login.ejs', { message: req.flash('error') });
-});
-app.post('/login', async (req, resp, next) => {
-    // use passport authentication to see if valid login
-    passport.authenticate('localLogin',
-        {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true
-        })(req, resp, next);
-});
-app.get('/logout', (req, resp) => {
-    req.logout();
-    req.flash('info', 'You were logged out');
-    resp.render('login', { message: req.flash('info') });
-});
+app.get("/login", (req, res) => {
+    res.render("login.ejs", { message: req.flash("error") });
+  });
 
-// use bodyParser middleware on express app
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.post("/login", async (req, resp, next) => {
+    passport.authenticate("localLogin", {
+      successReturnToOrRedirect: "/",
+      failureRedirect: "/login",
+      failureFlash: true,
+    })(req, resp, next);
+  });
+  
+app.get("/logout", (req, resp) => {
+    req.logout();
+    req.flash("info", "You were logged out");
+    resp.render("login", { message: req.flash("info") });
+  });
 
 // customize the 404 error with our own middleware function
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")
 });
 
-app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log("Server running at port= " + port);
+});
