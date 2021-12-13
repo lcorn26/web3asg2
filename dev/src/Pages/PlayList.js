@@ -51,9 +51,11 @@ export const PlaysList = () => {
         localStorage.setItem("playDetails", JSON.stringify(row));
         navigate("/play-details/" + row.id);
     }
+
+    //playsList.sort((a, b) => (a.title > b.title) ? 1 : -1)
     const columns = [
         {
-            title: <a id="title" href="#" onclick={playsList.sort((a, b) => (a.title > b.title) ? 1 : -1)}>Title</a>,
+            title: <a id="title" href="#">Title</a>,
             dataIndex: 'title',
             key: 'title',
         },
