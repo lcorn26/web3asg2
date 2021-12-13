@@ -4,7 +4,6 @@ import { Menu, Layout, Empty, Button, Row, Col, Form, List, Card, Select, Tabs }
 
 import About from './About.jsx';
 import AccInfo from './AccInfo.jsx';
-import Logout from './Logout.jsx';
 import axios from 'axios';
 
 const { Header, Content } = Layout;

@@ -10,13 +10,14 @@ export default function About() {
     const domainPlays =  "/api/play/1";
     const domainUsers =  "/api/user/1";
     const domainLogin =  "/login";
+    const domainAll = "/api/list"
     return (
         <div className="modal-window">
             <div className="about-button" onClick={() => setModalIsOpen(true)}>About</div>
             <Modal isOpen = {modalIsOpen}
                 shouldCloseOnOverlayClick={false}
                 onRequestClose={() => setModalIsOpen(false)}>
-
+            
                 <h1 align="center">WEB 3 Assignment 2 | <a href="https://github.com/lcorn26/web3asg2">Github Link</a></h1>
                 <h2 align="center"> <p className="modal-content">
                     <p >Website made by: Andre Co, Liam Cormwall, Meet Suthar</p>
@@ -32,8 +33,10 @@ export default function About() {
                 <hr></hr>
                 <p align="center">
                     <h2>API Links</h2>
-                    <li><a href={domain + domainPlays}>hi</a></li>
-                    <li></li>
+                    <li><a href={domain + domainAll}>domain/api/list</a></li>
+                    <li><a href={domain + domainPlays}>domain/api/plays/#</a></li>
+                    <li><a href={domain + domainUsers}>domain/api/user/#</a></li>
+                    <li><a href={domain + domainLogin}>domain/login</a></li>
                     </p>
                     <hr></hr>
                 <div align="center">
