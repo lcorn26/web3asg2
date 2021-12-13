@@ -13,4 +13,4 @@ const playSchema = new mongoose.Schema({
  desc: String,
  playText: Object
  });
- module.exports = mongoose.model('play', playSchema);
+ module.exports = mongoose.model('Play', playSchema);

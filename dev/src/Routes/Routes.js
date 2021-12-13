@@ -21,7 +21,6 @@ export function Routings() {
                     <Route exact path='/play-list' component={PlaysList} element={<PlaysList/>}></Route>
                     <Route exact path='/play-details/:id' component={PlayDetails} element={<PlayDetails/>}></Route>
                     <Route exact path='/favourites' component={Favourites} element={<Favourites/>}></Route>
-                    <Route exact path="*" component={Empty} element={<Empty/>}/>
                 </Routes>
             </Router>
         </div>

@@ -1,7 +1,7 @@
 
 const path = require("path");
-const play = require('../models/play');
-const user = require('../models/user');
+const play = require('../models/Play');
+const user = require('../models/User');
 
 
 // error messages need to be returned in JSON format

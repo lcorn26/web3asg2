@@ -2,10 +2,9 @@
 // Initialize express router
 const helper = require('../scripts/helpers.js');
 
-const handleAll = (app, controller) => {
+const handleAll = (app, play) => {
     app.get('/api/list', helper.ensureAuthenticated, (req,resp) => {         
-      const data = controller.getAll();
-      data.find({}, (err, data) => {
+      play.find({}, (err, data) => {
         if (err) {
         resp.json({ message: 'Unable to connect to images' });
         } else {

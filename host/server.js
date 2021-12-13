@@ -9,6 +9,11 @@ const flash = require('express-flash');
 const passport = require('passport');
 const helper = require('./scripts/helpers.js');
 const controller = require('./scripts/dataController.js');
+const auth = require('./scripts/Auth.js');
+   const play = require('./models/Play');
+   const user = require('./models/User');
+   const Router = require('./scripts/api-routes.js');
+   const cookieParser = require('cookie-parser');
 
 require('./scripts/dataConnector.js').connect();
 // create express app
@@ -20,43 +25,31 @@ app.use(express.urlencoded({ extended: true }));
 
 /* --- middle ware section --- */
 // view engine setup
-app.set('views', './views');
-app.set('view engine', 'ejs');
-
+//view engine setup
+app.set("views", "./views");
+app.set("view engine", "ejs");
+app.use(cookieParser("test"));
 app.use(
-    session({
+  session({
     secret: process.env.SECRET,
     resave: true,
-    saveUninitialized: true
-    })
-   );
-   // Passport middleware
-   app.use(passport.initialize());
-   app.use(passport.session());
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
    
-   // use express flash, which will be used for passing messages
-   app.use(flash())
-   
-   // set up the passport authentication
-   require('./scripts/Auth.js');
-
-   const play = require('./models/play');
-   const user = require('./models/user');
-
-   const Router = require('./scripts/api-routes.js');
-   Router.handleAll(app, controller);
+   Router.handleAll(app, play);
    // create connection to database
 
 
 /*--- add in site page requests ----*/
 app.get('/', helper.ensureAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "./build/index.html"));
-    app.use(express.static(path.join(__dirname, './build')));
+    app.use('/', express.static(path.join(__dirname, './build')));
 });
 
-app.get('/api/list', helper.ensureAuthenticated, (req, res) => {
-    res.render('list.ejs', { plays: controller.getAll() });
-});
 
 // app.get('/api/play/:id', helper.ensureAuthenticated, (req, res) => {
 //     res.render('play.ejs', {

@@ -5,8 +5,8 @@ import {
     HeartTwoTone,
     DeleteTwoTone
 } from '@ant-design/icons';
-import About from './About.jsx';
-import AccInfo from './AccInfo.jsx';
+import About from './About.js';
+import AccInfo from './AccInfo.js';
 
 const { Header, Content } = Layout;
 const { Option } = Select;

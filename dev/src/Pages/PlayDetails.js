@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Menu, Layout, Empty, Button, Row, Col, Form, List, Card, Select, Tabs } from 'antd';
 
-import About from './About.jsx';
-import AccInfo from './AccInfo.jsx';
+import About from './About.js';
+import AccInfo from './AccInfo.js';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
