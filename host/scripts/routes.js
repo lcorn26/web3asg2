@@ -4,6 +4,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("express-flash");
+const path = require("path");
 
 const passInit = (app) => {
   app.use(cookieParser("AndreIsDying"));
@@ -67,9 +68,20 @@ handlePlayByID = (app, play) => {
     });
   });
 };
+const publicPath = path.join(__dirname,'../build');
+
+home = (app) => {
+  passInit(app);
+  app.get('/', helper.ensureAuthenticated, (req,resp) => { 
+    const filename = path.join(publicPath, "index.html");
+    resp.sendFile(filename);
+  } ); 
+};
+
 
 module.exports = {
   handleAllPlays,
   handlePlayByID,
   handleUserByID,
+  home
 };

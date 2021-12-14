@@ -28,6 +28,7 @@ const Router = require('./scripts/routes.js');
 Router.handleAllPlays(app, play);
 Router.handlePlayByID(app, play);
 Router.handleUserByID(app, user);
+Router.home(app)
 
 //view engine setup
 app.set("views", "./views");
@@ -50,14 +51,10 @@ const publicPath = path.join(__dirname,'./build');
 app.use(express.static(publicPath));
 
 // you could add helper.ensureAuthenticated to this get
-app.get('/', helper.ensureAuthenticated, (req,resp) => { 
-    const filename = path.join(publicPath,'index.html');
-    resp.sendFile(filename);
-} ); 
 
 app.get("/play-list", helper.ensureAuthenticated, (req, res) => {
-    const filename = path.join(publicPath,'index.html');
-    resp.sendFile(filename);
+  const publicPath = path.join(__dirname,'./build');
+  app.use(express.static(publicPath));
   });
 
 // login and logout handlers

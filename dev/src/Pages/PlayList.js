@@ -49,7 +49,7 @@ export const PlaysList = () => {
     }
     const onViewDetails = (row) => {
         localStorage.setItem("playDetails", JSON.stringify(row));
-        navigate("/api/play/" + row.id);
+        navigate("/play-details/" + row.id);
     }
 
     //playsList.sort((a, b) => (a.title > b.title) ? 1 : -1)
@@ -138,7 +138,7 @@ export const PlaysList = () => {
                         <Menu.Item key="1"> <Link to="/"><img src="https://i.gifer.com/YIgY.gif" alt="home" width="30px" height="30px" /></Link></Menu.Item>
                         <Menu.Item key="2"><About/></Menu.Item>
                         <Menu.Item key="3"><AccInfo/></Menu.Item>
-                        <Menu.Item key="3"><div>Logout</div></Menu.Item>
+                        <Menu.Item key="4"><div><a href="/logout"></a>Logout</div></Menu.Item>
                     </Menu>
                 </Header>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
