@@ -13,6 +13,7 @@ export const PlayDetails = () => {
     const [isLoaded, setIsloaded] = useState(false);
     const [playDescrip, setPlayDescrip] = useState(false);
     const playDetails = JSON.parse(localStorage.getItem("playDetails"));
+    
     useEffect(() => {
         fetch('/api/play/' + id)
             .then(response => response.json())

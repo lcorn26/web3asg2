@@ -22,7 +22,6 @@ export default function About() {
                 <p align="center" > 
                 <h3>Resources Used: </h3>
                     <li>React Library</li>
-                    <li></li>
                     <li>React (modal, router, useEffect, useState) </li>
                     <li>JavaScript</li>
                     <li>HTML</li>
@@ -33,9 +32,10 @@ export default function About() {
                 <hr></hr>
                 <p align="center">
                     <h2>API Links</h2>
-                    <li>hi</li>
-                    <li><a href="/api/play">/api/play</a></li>
-                    <li></li>
+                    <li><a href="/api/list">/api/list</a></li>
+                    <li><a href="/api/play/hamlet">/api/play/hamlet</a></li>
+                    <li><a href="/api/user/1">/api/user/1</a></li>
+                    <li><a href="/login">/login</a></li>
                     </p>
                     <hr></hr>
                 <div align="center">

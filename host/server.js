@@ -2,7 +2,6 @@
 require('dotenv').config();
 // create express app
 
-
 // require express
 const express = require("express");
 const app = express();
@@ -23,10 +22,6 @@ const user = require('./models/User.js');
 // tell node to use json and HTTP header features
 app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static('./static/'));
-
-//use bodyParser middleware on express app
-//app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(bodyParser.json());
 
 //use route handlers
 const Router = require('./scripts/routes.js');
@@ -60,14 +55,6 @@ app.get("/play-list", helper.ensureAuthenticated, (req, res) => {
     app.use("/", express.static(path.join(__dirname, "./build")));
   });
 
-
-// app.get('/api/play/:id', helper.ensureAuthenticated, (req, res) => {
-//     res.render('play.ejs', {
-//         play:
-//             controller.findPlay(req.params.id)
-//     });
-// });
-
 // login and logout handlers
 app.get("/login", (req, res) => {
     res.render("login.ejs", { message: req.flash("error") });
@@ -87,9 +74,19 @@ app.get("/logout", (req, resp) => {
     resp.render("login", { message: req.flash("info") });
   });
 
+app.get("/loggedInUser", helper.ensureAuthenticated, (req, res) => {
+    user.find({ id: req.user.id }, "id", (err, data) => {
+      if (err) {
+        res.json({ message: "User not found" });
+      } else {
+        res.send(data);
+      }
+    });
+  });
+
 // customize the 404 error with our own middleware function
 app.use(function (req, res, next) {
-    res.status(404).send("Sorry can't find that!")
+    res.status(404).send("Sorry we cannot find that!")
 });
 
 const port = process.env.PORT;
