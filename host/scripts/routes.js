@@ -30,7 +30,7 @@ handleUserByID = (app, user) => {
         if (data) {
           resp.json(data);
         } else {
-          resp.json({ message: "User not found :(" });
+          resp.json({ message: "User not found" });
         }
       }
     );

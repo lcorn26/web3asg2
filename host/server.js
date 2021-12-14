@@ -32,27 +32,32 @@ Router.handleUserByID(app, user);
 //view engine setup
 app.set("views", "./views");
 app.set("view engine", "ejs");
-app.use(cookieParser("test"));
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
 
-/*--- add in site page requests ----*/
-app.get("/", helper.ensureAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "./build/index.html"));
-    app.use("/", express.static(path.join(__dirname, "./build")));
-  });
+app.use(cookieParser("AndreIsDying"));
+  app.use(
+    session({
+      secret: process.env.SECRET,
+      resave: true,
+      saveUninitialized: true,
+    })
+  );
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(flash());
+
+// handle requests for static resources from react's build folder
+const publicPath = path.join(__dirname,'./build');
+app.use(express.static(publicPath));
+
+// you could add helper.ensureAuthenticated to this get
+app.get('/', helper.ensureAuthenticated, (req,resp) => { 
+    const filename = path.join(publicPath,'index.html');
+    resp.sendFile(filename);
+} ); 
 
 app.get("/play-list", helper.ensureAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "./build/index.html"));
-    app.use("/", express.static(path.join(__dirname, "./build")));
+    const filename = path.join(publicPath,'index.html');
+    resp.sendFile(filename);
   });
 
 // login and logout handlers

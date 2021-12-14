@@ -49,7 +49,7 @@ export const PlaysList = () => {
     }
     const onViewDetails = (row) => {
         localStorage.setItem("playDetails", JSON.stringify(row));
-        navigate("/play-details/" + row.id);
+        navigate("/api/play/" + row.id);
     }
 
     //playsList.sort((a, b) => (a.title > b.title) ? 1 : -1)
